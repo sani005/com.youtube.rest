@@ -17,6 +17,7 @@ import org.codehaus.jettison.json.JSONArray;
 import com.youtube.dao.OracleSani005;
 import com.youtube.util.ToJSON;
 
+import com.youtube.dao.SchemaSani005;
 
 @Path("/v2/inventory")
 
@@ -31,6 +32,14 @@ public class V2_inventory {
 		
 		try {
 			
+			if (brand == null){
+				return Response.status(400).entity("Error: please specify brand for this search").build();
+			}
+			
+			SchemaSani005 dao = new SchemaSani005();
+			
+			json = dao.queryReturnBrandParts(brand);
+			returnString = json.toString();
 
 
 		} 
