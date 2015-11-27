@@ -22,7 +22,7 @@ import com.youtube.dao.SchemaSani005;
 @Path("/v2/inventory")
 
 public class V2_inventory {
-	
+	/*
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response returnBrandParts(@QueryParam("brand") String brand) throws Exception {		
@@ -35,6 +35,44 @@ public class V2_inventory {
 			if (brand == null){
 				return Response.status(400).entity("Error: please specify brand for this search").build();
 			}
+			
+			SchemaSani005 dao = new SchemaSani005();
+			
+			json = dao.queryReturnBrandParts(brand);
+			returnString = json.toString();
+
+
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity("Server was not able to process your request").build();
+		}
+		
+		return Response.ok(returnString).build();
+		
+	
+	}
+	*/
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response returnErrorOnBrand(@QueryParam("brand") String brand) throws Exception {		{
+				return Response.status(400).entity("Error: please specify brand for this search").build();
+			
+	}
+	}
+	
+	
+	@Path("/{brand}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response returnBrand(@PathParam("brand") String brand) throws Exception {		
+		
+		String returnString = null;
+		JSONArray json = new JSONArray();
+		
+		try {
+
 			
 			SchemaSani005 dao = new SchemaSani005();
 			
